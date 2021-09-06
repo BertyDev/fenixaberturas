@@ -12,14 +12,24 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        {{-- GliderJS --}}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
+        {{-- FontAwesome --}}
+        <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
 
-        @livewireStyles
+        {{-- FlexSlider --}}
+        <link rel="stylesheet" href="{{ asset('vendor/flexSlider/flexslider.css') }}">
+
+             @livewireStyles
 
         <!-- Scripts -->
-        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
-        <script src="{{ mix('js/app.js') }}" defer></script>
+          <script src="{{ mix('js/app.js') }}" defer></script>
+          {{-- GliderJS --}}
         <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+        {{-- Jquery --}}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        {{-- FlexSlider --}}
+        <script src="{{ asset('vendor/FlexSlider/jquery.flexslider-min.js') }}"></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -62,6 +72,6 @@
             }
         
         </script>
-        @stack('glider')
+        @stack('scripts')
     </body>
 </html>

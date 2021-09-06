@@ -32,7 +32,7 @@ class Product extends Model
 
     public function colors()
     {
-        return $this->belongsToMany(Color::class);
+        return $this->belongsToMany(Color::class)->withPivot('quantity');
     }
 
     // relacion uno a muchos
@@ -45,6 +45,13 @@ class Product extends Model
     public function images()
     {
         return $this->morphMany(Image::class,'imageable');
+    }
+
+    // URL AMIGABLE
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
 }

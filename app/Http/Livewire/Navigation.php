@@ -11,7 +11,7 @@ class Navigation extends Component
 
     public function render()
     {
-        $categories = Category::all();
+        $categories = Category::with('subcategories')->get();
 
         return view('livewire.navigation', compact('categories'));
     }

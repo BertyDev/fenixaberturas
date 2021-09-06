@@ -3,7 +3,7 @@
     <div class="glider-contain">
         <ul class="glider-{{ $category->id }}">
             @foreach ($products as $product)
-                <li class=" bg-white rounded-lg shadow {{ $loop->last ? '' : 'sm:mr-4' }} ">
+                <li class=" bg-white rounded-lg shadow  {{ $loop->last ? '' : 'sm:mr-4' }} ">
                     <article>
                         <figure>
                             <img class=" h-48 w-full md:h-36 md:w-56 rounded-t-lg object-cover object-center"
@@ -11,7 +11,7 @@
                         </figure>
                         <div class=" py-4 px-6">
                             <h1 class=" text-base font-semibold truncate">
-                                <a href="">
+                                <a href="{{ route('products.show',$product) }}">
                                     {{ $product->name }}
                                 </a>
                             </h1>

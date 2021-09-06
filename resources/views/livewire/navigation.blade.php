@@ -83,13 +83,12 @@
     </div>
     <nav id="navigation-menu" :class="{'block': open,'hidden': !open}"
         x-show="open"
-        
         x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="transform opacity-0 scale-95" 
+        x-transition:enter-start="transform opacity-0 scale-100" 
         x-transition:enter-end="transform opacity-100 scale-100"
         x-transition:leave="transition ease-in duration-300" 
         x-transition:leave-start="transform opacity-100 scale-100"
-        x-transition:leave-end="transform opacity-0 scale-95"
+        x-transition:leave-end="transform opacity-0 scale-100"
     
         class=" bg-trueGray-700 bg-opacity-25 absolute w-full hidden">
         {{-- Menu pantallas grandes --}}
@@ -98,7 +97,7 @@
                 <ul class=" bg-white">
                     @foreach ($categories as $category)
                         <li class="navigation-link text-trueGray-500 hover:bg-gray-500 hover:text-white">
-                            <a href="" class="py-2 px-4 text-sm flex items-center">
+                            <a href="{{ route('categories.show',$category) }}" class="py-2 px-4 text-sm flex items-center">
                                 <span class="flex justify-center w-9">
                                     {!! $category->icon !!}
                                 </span>
@@ -129,7 +128,7 @@
             <ul>
                 @foreach ($categories as $category)
                 <li class=" text-trueGray-500 hover:bg-gray-500 hover:text-white">
-                    <a href="" class="py-2 px-4 text-sm flex items-center ">
+                    <a href="{{ route('categories.show',$category) }}" class="py-2 px-4 text-sm flex items-center ">
                         <span class="flex justify-center w-9">
                             {!! $category->icon !!}
                         </span>
