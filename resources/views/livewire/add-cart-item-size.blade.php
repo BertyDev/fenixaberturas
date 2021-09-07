@@ -19,8 +19,12 @@
     </div>
     <p class=" text-trueGray-700 my-4">
         
-        <span class="font-semibold text-lg">Stock disponible: </span>{{ $quantity }}
-        
+        <span class="font-semibold text-lg">Stock disponible: </span>
+        @if ($quantity)
+        {{ $quantity }}
+        @else
+        {{ $product->stock }}
+        @endif  
         </p>
     <div class="flex mt-4">
         <div>
@@ -43,8 +47,12 @@
         </div>
         <div class="flex-1 ml-4">
             <x-button 
+            x-bind:disabled="$wire.qty > $wire.quantity"
             x-bind:disabled="!$wire.quantity"
              color="blue" 
+             wire:click="addItem"
+             wire:loading.attr="disabled"
+             wire.target="addItem"
              class="w-full">
                 agregar al carrito
             </x-button>

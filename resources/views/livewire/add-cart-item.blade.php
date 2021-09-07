@@ -30,7 +30,12 @@
             </x-jet-secondary-button>
         </div>
         <div class="flex-1 ml-4">
-            <x-jet-button class="w-full justify-center bg-blue-700 hover:bg-blue-500">
+            <x-jet-button 
+            x-bind:disabled="$wire.qty > $wire.quantity"
+            wire:click="addItem"
+            wire:loading.attr="disabled"
+            wire.target="addItem"
+            class="w-full justify-center bg-blue-700 hover:bg-blue-500">
                 agregar al carrito
             </x-jet-button>
 
