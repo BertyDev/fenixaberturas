@@ -47,7 +47,7 @@
             <div class="p-2 mt-1">
                 <p class="text-lg text-trueGray-700"><span class="font-bold ">Total</span>: $ {{ Cart::subtotal() }}</p>
                 <x-button color="blue" class="w-full mt-2">
-                    <a href="">
+                    <a class="w-full h-full" href="{{ route('shopping-cart') }}">
                     ir al carrito de comprar
                     </a>
                 </x-button>

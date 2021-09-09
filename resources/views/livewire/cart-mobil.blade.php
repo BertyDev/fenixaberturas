@@ -5,7 +5,8 @@
         </span>
         <span class=" relative inline-block cursor-pointer pr-5">
         {{ __('Shopping cart') }}
-        <span class="absolute top-2 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">99</span>
+        <span class="absolute top-2 right-0 inline-flex items-center justify-center px-2 py-1 text-xs 
+        font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">{{ Cart::count() }}</span>
    
         </span>
     </a>
