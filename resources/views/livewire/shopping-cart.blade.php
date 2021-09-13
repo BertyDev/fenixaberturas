@@ -37,12 +37,13 @@
                     </td>
                     <td class=" text-center">
                         <span>${{ $item->price }}</span>
-                        <a wire:click="delete('{{ $item->rowId }}')"
+                        <button wire:click.prevent="delete('{{ $item->rowId }}')"
+                            onclick="confirm('{{ __('Are you sure you want to run this action?') }}') || event.stopImmediatePropagation()"
                             wire:loading.class="text-red-600 opacity-25"
-                            wire:target="deletedelete('{{ $item->rowId }}')"
+                            wire:target="delete('{{ $item->rowId }}')"
                             class="ml-4 cursor-pointer hover:text-red-600">
                             <i class="fas fa-trash"></i>
-                        </a>
+                        </button>
                     </td>
                     <td >
                       <div class="flex justify-center">
@@ -95,7 +96,7 @@
                 </div>
                 <div>
                     <x-button>
-                        <a href="/" class="w-full h-full">
+                        <a href="{{ route('orders.create') }}" class="w-full h-full">
                             Continuar
                         </a>
                     </x-button>

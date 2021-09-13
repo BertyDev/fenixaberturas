@@ -1,6 +1,6 @@
 <div class="flex-1 relative z-40" x-data>
 <form action="{{ route('search') }}" autocomplete="off">
-    <x-jet-input name="name" wire:model="search" type="text" class="w-full mx-2 md:mx-0" placeholder="Buscar Producto" />
+    <x-jet-input name="name" wire:model.debounce.500ms="search" type="text" class="w-full mx-2 md:mx-0" placeholder="Buscar Producto" />
     <button class=" absolute top-0 right-0 w-12 h-full flex items-center justify-center">
         <x-search size="2xl" color="500" />
     </button>

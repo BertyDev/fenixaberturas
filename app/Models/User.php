@@ -18,6 +18,15 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+
+//Relacion uno a muchos
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+
+
     /**
      * The attributes that are mass assignable.
      *

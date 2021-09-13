@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-
+use App\Models\Department;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use phpDocumentor\Reflection\Types\This;
@@ -38,5 +38,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SizeSeeder::class);
         $this->call(ColorSizeSeeder::class);
+
+        $this->call(Department::class);
     }
 }

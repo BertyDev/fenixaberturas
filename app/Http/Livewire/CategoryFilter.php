@@ -28,7 +28,8 @@ class CategoryFilter extends Component
         //             ->where('status',2)->paginate(20);
 
         $productsQuery = Product::query()->whereHas('subcategory.category', function(Builder $query){
-         $query->where('id',$this->category->id);
+         
+            $query->where('id',$this->category->id);
         });
 
         if(!empty($this->subcategoryh)){
@@ -42,7 +43,10 @@ class CategoryFilter extends Component
             });
         }
 
-        $products = $productsQuery->with(['images'])->paginate(20);
+
+        $products = $productsQuery->with([
+            'images'
+        ])->paginate(20);
         
         return view('livewire.category-filter', compact('products'));
     }

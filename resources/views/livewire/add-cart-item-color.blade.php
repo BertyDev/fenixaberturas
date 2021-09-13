@@ -1,7 +1,7 @@
 <div x-data>
     <p class=" text-xl text-trueGray-700">color:</p>
 
-    <select wire:model="color_id" class="form-control w-full">
+    <select wire:model.debounce.500ms="color_id" class="form-control w-full">
         <option value="" selected disabled>Selecionar un color</option>
         @foreach ($colors as $color)
             <option value="{{ $color->id }}">{{ __($color->name) }}</option>

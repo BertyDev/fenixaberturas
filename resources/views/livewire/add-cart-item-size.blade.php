@@ -1,7 +1,7 @@
 <div x-data>
     <div>
         <p class=" text-xl text-trueGray-700">Medida: </p>
-        <select wire:model="size_id" class="form-control w-full">
+        <select wire:model.debounce.500ms="size_id" class="form-control w-full">
             <option value="" selected disabled>Selecione una Medida</option>
             @foreach ($sizes as $size)
                 <option value="{{ $size->id }}">{{ $size->name }}</option>
@@ -10,7 +10,7 @@
     </div>
     <div class="mt-2">
         <p class=" text-xl text-trueGray-700">Color: </p>
-        <select wire:model="color_id" class="form-control w-full">
+        <select wire:model.debounce.500ms="color_id" class="form-control w-full">
             <option value="" selected disabled>Selecione un Color</option>
             @foreach ($colors as $color)
                 <option value="{{ $color->id }}">{{ __($color->name) }}</option>
