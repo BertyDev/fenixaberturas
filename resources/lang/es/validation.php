@@ -165,5 +165,9 @@ return [
         'title'                 => 'título',
         'username'              => 'usuario',
         'year'                  => 'año',
+        'category_id'              => 'categoría',
+        'subcategory_id'           => 'subcategoría',
+        'brand_id'                 => 'marca',
+        'quantity'                 => 'cantidad',
     ],
 ];

@@ -45,6 +45,9 @@
                         <x-jet-dropdown-link href="{{ route('orders.index') }}"> 
                            {{ __('My orders') }}
                         </x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="{{ route('admin.index') }}"> 
+                            {{ __('Administrator') }}
+                         </x-jet-dropdown-link>
 
 
                         <div class="border-t border-gray-100"></div>
@@ -155,6 +158,12 @@
                     <i class="cursor-pointer fas fa-truck"></i>
                 </span>
                {{ __('My orders') }}
+            </a>
+            <a href="{{ route('admin.index') }}" class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white">
+                <span class="flex justify-center w-9">
+                    <i class="cursor-pointer fas fa-tools"></i>
+                </span>
+               {{ __('Administrator') }}
             </a>
             <a href="" 
             onclick="event.preventDefault();

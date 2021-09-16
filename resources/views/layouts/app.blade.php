@@ -38,7 +38,7 @@
             @livewire('navigation')
 
             <!-- Page Heading -->
-          
+           
 
             <!-- Page Content -->
             <main>

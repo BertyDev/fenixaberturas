@@ -10,7 +10,6 @@ use App\Http\Livewire\ShoppingCart;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Controllers\WebhooksController;
 use App\Http\Livewire\PaymentOrder;
-use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
