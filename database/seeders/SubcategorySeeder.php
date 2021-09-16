@@ -35,7 +35,7 @@ class SubcategorySeeder extends Seeder
                 'category_id' => 1,
                 'name' => 'linea 3',
                 'slug' => Str::slug('linea 3'),
-                'color' => false,
+                'color' => true,
                 'size' => true,
             ],
             //puertas
@@ -50,7 +50,7 @@ class SubcategorySeeder extends Seeder
                 'category_id' => 2,
                 'name' => 'linea 2',
                 'slug' => Str::slug('linea 2'),
-                'color' => false,
+                'color' => true,
                 'size' => true,
             ],
             [
@@ -73,7 +73,7 @@ class SubcategorySeeder extends Seeder
                 'name' => 'linea 2',
                 'slug' => Str::slug('linea 2'),
                 'color' => false,
-                'size' => true,
+                'size' => false,
             ],
             [
                 'category_id' => 3,
@@ -87,8 +87,8 @@ class SubcategorySeeder extends Seeder
                 'category_id' => 4,
                 'name' => 'linea 1',
                 'slug' => Str::slug('linea 1'),
-                'color' => false,
-                'size' => true,
+                'color' => true,
+                'size' => false,
             ],
             [
                 'category_id' => 4,
@@ -110,6 +110,7 @@ class SubcategorySeeder extends Seeder
                 'name' => 'accesorios toldos',
                 'slug' => Str::slug('accesorios toldos'),
                 'color' => true,
+                'size' => false,
                 
             ],
             [
@@ -117,18 +118,21 @@ class SubcategorySeeder extends Seeder
                 'name' => 'accesorios ventanas',
                 'slug' => Str::slug('accesorios ventanas'),
                 'color' => false,
+                'size' => false,
             ],
             [
                 'category_id' => 5,
                 'name' => 'accesorios puertas',
                 'slug' => Str::slug('accesorios puertas'),
                 'color' => true,
+                'size' => false,
             ],
             [
                 'category_id' => 5,
                 'name' => 'accesorios portones',
                 'slug' => Str::slug('accesorios portones'),
                 'color' => true,
+                'size' => false,
             ],
         ];
 

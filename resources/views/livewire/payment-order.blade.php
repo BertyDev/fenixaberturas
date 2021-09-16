@@ -1,4 +1,4 @@
-<x-app-layout>
+<div>
     @php
         // SDK de Mercado Pago
         require base_path('/vendor/autoload.php');
@@ -7,6 +7,13 @@
         
         // Crea un objeto de preferencia
         $preference = new MercadoPago\Preference();
+        
+        $shipments = new MercadoPago\Shipments();
+        
+        $shipments->cost = $order->shipping_cost;
+        $shipments->mode = 'not_specified';
+        
+        $preference->shipments = $shipments;
         
         // Crea un ítem en la preferencia
         foreach ($items as $product) {
@@ -18,10 +25,8 @@
             $products[] = $item;
         }
         
-        $preference = new MercadoPago\Preference();
-        //...
         $preference->back_urls = [
-            'success' => 'https://www.http://fenixaberturas.test/orders' ,
+            'success' => route('orders.pay', $order),
             'failure' => 'http://www.tu-sitio/failure',
             'pending' => 'http://www.tu-sitio/pending',
         ];
@@ -33,39 +38,39 @@
         
     @endphp
     <div class="container py-8">
-        <div class=" bg-white rounded-lg shadow-lg px-6 py-4 mb-6">
+        <div class="px-6 py-4 mb-6 bg-white rounded-lg shadow-lg ">
             <p class="text-gray-700 uppercase">
-                <span class=" font-bold">
+                <span class="font-bold ">
                     Numero de orden:
                 </span>
                 Orden-{{ $order->id }}
             </p>
         </div>
-        <div class=" bg-white rounded-lg shadow-lg p-6 mb-6">
+        <div class="p-6 mb-6 bg-white rounded-lg shadow-lg ">
             <div
-                class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-gray-700 lg:divide-x-2 lg:divide-gray-300 lg:divide-dotted">
+                class="grid grid-cols-1 gap-6 text-gray-700 lg:grid-cols-2 lg:divide-x-2 lg:divide-gray-300 lg:divide-dotted">
                 <div>
-                    <p class=" text-lg font-semibold uppercase">Envío</p>
+                    <p class="text-lg font-semibold uppercase ">Envío</p>
                     @if ($order->envio_type == 1)
-                        <p class=" text-sm"> Los productos deben ser recogidos en el Local</p>
-                        <p class=" text-sm">Calle del Local</p>
+                        <p class="text-sm "> Los productos deben ser recogidos en el Local</p>
+                        <p class="text-sm ">Calle del Local</p>
                     @else
-                        <p class=" text-sm">Los productos serán enviados:</p>
-                        <p class=" text-sm">{{ $order->addres }}</p>
+                        <p class="text-sm ">Los productos serán enviados:</p>
+                        <p class="text-sm ">{{ $order->addres }}</p>
                         <p>{{ $order->department->name }} - {{ $order->city->name }} -
                             {{ $order->district->name }}</p>
                     @endif
                 </div>
                 <div class="lg:pl-2">
-                    <p class=" text-lg font-semibold uppercase">Contácto</p>
-                    <p class=" text-sm">Persona que recibirá el Producto: {{ $order->contact }}</p>
-                    <p class=" text-sm">Teléfono de Contacto: {{ $order->phone }}</p>
+                    <p class="text-lg font-semibold uppercase ">Contácto</p>
+                    <p class="text-sm ">Persona que recibirá el Producto: {{ $order->contact }}</p>
+                    <p class="text-sm ">Teléfono de Contacto: {{ $order->phone }}</p>
                 </div>
             </div>
         </div>
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-6 text-gray-700">
-            <p class=" text-xl font-semibold mb-4">Resumen</p>
-            <table class=" table-auto w-full">
+        <div class="p-6 mb-6 text-gray-700 bg-white rounded-lg shadow-lg">
+            <p class="mb-4 text-xl font-semibold ">Resumen</p>
+            <table class="w-full table-auto">
                 <thead>
                     <tr>
                         <th></th>
@@ -74,14 +79,16 @@
                         <th>Total</th>
                     </tr>
                 </thead>
-                <tbody class=" divide-y-2 divide-gray-200">
-                    <tr>
-                        @foreach ($items as $item)
+                <tbody>
+
+                    @foreach ($items as $item)
+                        <tr>
                             <td>
-                                <div class="flex">
-                                    <img class="h-15 w-20 object-cover mr-4" src="{{ $item->options->image }}" alt="">
+                                <div class="flex my-1">
+                                    <img class="object-cover w-20 mr-4 rounded-md h-15"
+                                        src="{{ $item->options->image }}" alt="">
                                     <article>
-                                        <h1 class=" font-bold">{{ $item->name }}</h1>
+                                        <h1 class="font-bold ">{{ $item->name }}</h1>
                                         <div class="flex text-xs">
                                             @isset($item->options->color)
                                                 Color: {{ __($item->options->color) }}
@@ -102,34 +109,35 @@
                             <td class="text-center">
                                 $ {{ $item->price * $item->qty }}
                             </td>
-                        @endforeach
-                    </tr>
+                        </tr>
+                    @endforeach
+
                 </tbody>
             </table>
         </div>
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-6 text-gray-700 flex items-center justify-between">
+        <div class="flex items-center justify-between p-6 mb-6 text-gray-700 bg-white rounded-lg shadow-lg">
             <img class="h-8" src="{{ asset('img/PAGOS_EN_LINEA.png') }}" alt="">
             <div>
-                <p class="font-semibold  text-xs pb-1">
+                <p class="pb-1 text-xs font-semibold">
                     SubTotal: ${{ $order->total - $order->shipping_cost }}
                 </p>
                 @if ($order->shipping_cost > 0)
-                    <p class="font-semibold  text-xs pb-1">
+                    <p class="pb-1 text-xs font-semibold">
                         Envio: ${{ $order->shipping_cost }}
                     </p>
                 @endif
-                <p class=" text-lg font-semibold uppercase">
+                <p class="text-lg font-semibold uppercase ">
                     Total: ${{ $order->total }}
                 </p>
-                <div class="cho-container">
+                <div class="w-full cho-container">
 
                 </div>
             </div>
         </div>
     </div>
 
-
-    {{-- SDK MercadoPago.js V2 --}}
+    @push('scripts')
+        {{-- SDK MercadoPago.js V2 --}}
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 
     <script>
@@ -149,5 +157,6 @@
             }
         });
     </script>
-
-</x-app-layout>
+    @endpush
+    
+</div>

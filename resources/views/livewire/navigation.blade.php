@@ -1,33 +1,33 @@
 
-<header class=" bg-blue-600 sticky top-0 z-50" x-data="dropdown()">
-    <div class="container flex items-center justify-between md:justify-start h-16">
+<header class="sticky top-0 z-50 bg-blue-600 " x-data="dropdown()">
+    <div class="container flex items-center justify-between h-16 md:justify-start">
         <a 
         :class="{'bg-opacity-100 text-blue-500' :open}"
         x-on:click="show()"
-            class="order-last md:order-first flex flex-col items-center justify-center bg-white bg-opacity-25 text-white cursor-pointer font-semibold h-full px-6 md:px-4">
-            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            class="flex flex-col items-center justify-center order-last h-full px-6 font-semibold text-white bg-white bg-opacity-25 cursor-pointer md:order-first md:px-4">
+            <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-            <span class="hidden md:block text-sm">Categorias</span>
+            <span class="hidden text-sm md:block">Categorias</span>
         </a>
-        <a href="/" class=" mx-0 md:mx-6 bg-gray-50 items-center justify-center h-full flex  px-2">
+        <a href="/" class="flex items-center justify-center h-full px-2 mx-0 md:mx-6 bg-gray-50">
 
-            <x-jet-application-mark class=" h-14 w-auto" />
+            <x-jet-application-mark class="w-auto h-14" />
         </a>
 
         <div class="flex-1 hidden md:block">
             @livewire('search')
         </div>
 
-        <div class="mx-6 relative hidden md:block">
+        <div class="relative hidden mx-6 md:block">
             @auth
                 <x-jet-dropdown align="right" width="48">
                     <x-slot name="trigger">
 
                         <button
-                            class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                            <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
+                            class="flex text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
+                            <img class="object-cover w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}"
                                 alt="{{ Auth::user()->name }}" />
                         </button>
 
@@ -42,7 +42,9 @@
                         <x-jet-dropdown-link href="{{ route('profile.show') }}">
                             {{ __('Profile') }}
                         </x-jet-dropdown-link>
-
+                        <x-jet-dropdown-link href="{{ route('orders.index') }}"> 
+                           {{ __('My orders') }}
+                        </x-jet-dropdown-link>
 
 
                         <div class="border-t border-gray-100"></div>
@@ -62,7 +64,7 @@
             @else
                 <x-jet-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <i class="fas fa-user-circle text-white text-3xl cursor-pointer"></i>
+                        <i class="text-3xl text-white cursor-pointer fas fa-user-circle"></i>
                     </x-slot>
                     <x-slot name="content">
                         <x-jet-dropdown-link href="{{ route('login') }}">
@@ -77,7 +79,7 @@
             @endauth
 
         </div>
-       <div class=" hidden md:block">
+       <div class="hidden md:block">
         @livewire('dropdown-cart')
        </div>
     </div>
@@ -90,14 +92,14 @@
         x-transition:leave-start="transform opacity-100 scale-100"
         x-transition:leave-end="transform opacity-0 scale-100"
     
-        class=" bg-trueGray-700 bg-opacity-25 absolute w-full hidden">
+        class="absolute hidden w-full bg-opacity-25 bg-trueGray-700">
         {{-- Menu pantallas grandes --}}
-        <div class="container h-full hidden md:block">
-            <div x-on:click.away="close()" class="grid grid-cols-3 md:grid-cols-4 h-full relative">
-                <ul class=" bg-white">
+        <div class="container hidden h-full md:block">
+            <div x-on:click.away="close()" class="relative grid h-full grid-cols-3 md:grid-cols-4">
+                <ul class="bg-white ">
                     @foreach ($categories as $category)
                         <li class="navigation-link text-trueGray-500 hover:bg-gray-500 hover:text-white">
-                            <a href="{{ route('categories.show',$category) }}" class="py-2 px-4 text-sm flex items-center">
+                            <a href="{{ route('categories.show',$category) }}" class="flex items-center px-4 py-2 text-sm">
                                 <span class="flex justify-center w-9">
                                     {!! $category->icon !!}
                                 </span>
@@ -105,30 +107,30 @@
                             </a>
 
                             <div
-                                class="navigation-submenu bg-gray-100 absolute w-2/3 md:w-3/4 h-full top-0 right-0 hidden">
+                                class="absolute top-0 right-0 hidden w-2/3 h-full bg-gray-100 navigation-submenu md:w-3/4">
                                 <x-navigation-subcategories :category="$category" />
                             </div>
                         </li>
                     @endforeach
 
                 </ul>
-                <div class="col-span-2 md:col-span-3 bg-gray-100">
+                <div class="col-span-2 bg-gray-100 md:col-span-3">
                     <x-navigation-subcategories :category="$categories->first()" />
                 </div>
 
             </div>
         </div>
         {{-- Menu pantallas pequeñas --}}
-        <div class=" bg-white h-full overflow-y-auto">
+        <div class="h-full overflow-y-auto bg-white ">
 
-            <div class="container bg-blue-100 py-3 mb-2">
+            <div class="container py-3 mb-2 bg-blue-100">
                 @livewire('search')
             </div>
-            <p class=" text-trueGray-500 px-6 my-2">Categorias</p>
+            <p class="px-6 my-2 text-trueGray-500">Categorias</p>
             <ul>
                 @foreach ($categories as $category)
                 <li class=" text-trueGray-500 hover:bg-gray-500 hover:text-white">
-                    <a href="{{ route('categories.show',$category) }}" class="py-2 px-4 text-sm flex items-center ">
+                    <a href="{{ route('categories.show',$category) }}" class="flex items-center px-4 py-2 text-sm ">
                         <span class="flex justify-center w-9">
                             {!! $category->icon !!}
                         </span>
@@ -139,21 +141,27 @@
                 @endforeach
             </ul>
 
-            <p class=" text-trueGray-500 px-6 my-2">Usuarios</p>
+            <p class="px-6 my-2 text-trueGray-500">Usuarios</p>
             @livewire('cart-mobil')
             @auth
-            <a href="{{ route('profile.show') }}" class="py-2 px-4 text-sm flex items-center text-trueGray-500 hover:bg-gray-500 hover:text-white">
+            <a href="{{ route('profile.show') }}" class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white">
                 <span class="flex justify-center w-9">
-                    <i class="fas fa-user-circle cursor-pointer"></i>
+                    <i class="cursor-pointer fas fa-user-circle"></i>
                 </span>
                {{ __('Profile') }}
+            </a>
+            <a href="{{ route('orders.index') }}" class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white">
+                <span class="flex justify-center w-9">
+                    <i class="cursor-pointer fas fa-truck"></i>
+                </span>
+               {{ __('My orders') }}
             </a>
             <a href="" 
             onclick="event.preventDefault();
                     document.getElementById('logout-form').submit()"
-            class="py-2 px-4 text-sm flex items-center text-trueGray-500 hover:bg-gray-500 hover:text-white">
+            class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white">
                 <span class="flex justify-center w-9">
-                    <i class="fas fa-sign-out-alt cursor-pointer"></i>
+                    <i class="cursor-pointer fas fa-sign-out-alt"></i>
                 </span>
                {{ __('Logout') }}
             </a>
@@ -162,15 +170,15 @@
 
             </form>
             @else
-            <x-jet-dropdown-link class="py-2 px-4 text-sm flex items-center text-trueGray-500 hover:bg-gray-500 hover:text-white" href="{{ route('login') }}">
+            <x-jet-dropdown-link class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white" href="{{ route('login') }}">
                 <span class="flex justify-center w-9">
-                    <i class="fas fa-user-circle cursor-pointer"></i>
+                    <i class="cursor-pointer fas fa-user-circle"></i>
                 </span>
                 {{ __('Log in') }}
             </x-jet-dropdown-link>
-            <x-jet-dropdown-link class="py-2 px-4 text-sm flex items-center text-trueGray-500 hover:bg-gray-500 hover:text-white" href="{{ route('register') }}">
+            <x-jet-dropdown-link class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white" href="{{ route('register') }}">
                 <span class="flex justify-center w-9">
-                    <i class="fas fa-fingerprint cursor-pointer"></i>
+                    <i class="cursor-pointer fas fa-fingerprint"></i>
                 </span>
                 {{ __('Register') }}
             </x-jet-dropdown-link>

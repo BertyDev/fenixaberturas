@@ -20,5 +20,11 @@ class UserSeeder extends Seeder
             'email' => 'info@fenix.com.ar',
             'password' => bcrypt('12345678')
         ]);
+
+        User::create([
+            'name' => 'Prueba',
+            'email' => 'prueba@fenix.com.ar',
+            'password' => bcrypt('12345678')
+        ]);
     }
 }

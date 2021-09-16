@@ -22,7 +22,6 @@ class CreateOrder extends Component
         'contact' => ['required'],
         'phone' => ['required'],
         'envio_type' => ['required'],
-        'user_id' => ['required'],
     ];
 
     public function mount()
@@ -94,6 +93,10 @@ class CreateOrder extends Component
 
         $order->save();
 
+        foreach (Cart::content() as $item) {
+            discount($item);
+        }
+
         Cart::destroy();
 
         return redirect()->route('orders.payment',$order);
@@ -103,7 +106,6 @@ class CreateOrder extends Component
     public function render()
     {
         
-
         return view('livewire.create-order');
     }
 }
