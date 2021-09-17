@@ -26,7 +26,6 @@ class CreateProduct extends Component
         'description' => 'required',
         'brand_id' => 'required',
         'price' => 'required',
-        'quantity' => 'required',
 
     ];
 
@@ -40,7 +39,7 @@ class CreateProduct extends Component
         $rules = $this->rules;
         if ($this->subcategory_id) {
             if (!$this->subcategory->color && !$this->subcategory->size) {
-                $rules['quantity'] = 'required';
+                $rules['quantity'] = 'required|numeric';
             }
         }
         $this->validate($rules);
@@ -59,7 +58,7 @@ class CreateProduct extends Component
         }
         $product->save();
 
-        redirect()->route('products.show',$product);
+        redirect()->route('admin.products.edit',$product);
     }
 
     public function updatedName($value)

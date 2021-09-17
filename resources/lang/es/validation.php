@@ -169,5 +169,6 @@ return [
         'subcategory_id'           => 'subcategoría',
         'brand_id'                 => 'marca',
         'quantity'                 => 'cantidad',
+        
     ],
 ];

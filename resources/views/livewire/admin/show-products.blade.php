@@ -4,7 +4,7 @@
             <h2 class=" font-semibold text-lg text-trueGray-500 leading-tight">
                 Lista de Productos
             </h2>
-            <x-button class="ml-auto bg-green-600 hover:bg-green-400">
+            <x-button class="ml-auto bg-blue-600 hover:bg-blue-500">
                 <a href="{{ route('admin.products.create') }}" class="w-full h-full">
                     Agregar Producto
                 </a>
@@ -13,12 +13,12 @@
     </x-slot>
     <!-- This example requires Tailwind CSS v2.0+ -->
     <x-table-responsive>
-        <div class="px-6 py-4 ">
+        <div class="px-6 py-4">
             <x-jet-input wire:model.debounce.1s='search' class="form-control w-full" type="text"
                 placeholder="Ingrese el nombre del producto que desea buscar" />
         </div>
         @if ($products->count())
-            <table class="min-w-full divide-y divide-gray-200">
+            <table class="min-w-full table-auto divide-y divide-gray-200 border-t border-b border-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
                         <th scope="col"
@@ -86,17 +86,15 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <a href="{{ route('admin.products.edit', $product) }}"
-                                    class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    class="text-blue-500 hover:text-blue-700">{{ __('Edit') }}</a>
                             </td>
                         </tr>
                     @endforeach
-
-
                     <!-- More people... -->
                 </tbody>
             </table>
         @else
-            <div class="px-6 py-4">
+            <div class="px-6 py-4 text-center">
                 No hay nungún registro coincidente
             </div>
         @endif
