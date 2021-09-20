@@ -96,7 +96,7 @@
             </x-jet-action-message>
 
             <x-jet-button class=" bg-blue-600 hover:bg-blue-500" wire:click='update' wire:loading.attr='disabled'
-                wire:target='save'>
+                wire:target='update'>
                 {{ __('Updated Product') }}
             </x-jet-button>
         </div>
