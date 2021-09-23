@@ -4,14 +4,20 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Product;
 use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class EditProduct extends Component
 {
+    protected $listeners = [
+        'refreshProduct'
+    ];
+
     public $product, $categories, $subcategories, $brands;
 
     public $category_id;
@@ -81,6 +87,19 @@ class EditProduct extends Component
         $this->emit('saved');
 
       //  redirect()->route('admin.products.edit', $this->product);
+    }
+
+    public function deleteImage(Image $image)
+    {
+        Storage::delete($image->url);
+        $image->delete();
+
+        $this->product = $this->product->fresh();
+    }
+
+    public function refreshPost()
+    {
+        $this->product = $this->product->fresh();
     }
 
     public function render()

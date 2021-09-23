@@ -1,6 +1,31 @@
 <div class=" py-12 max-w-4xl mx-auto">
     <h1 class="text-xl lg:text-3xl text-center font-semibold mb-8">Complete la información para crear un Producto
     </h1>
+    <div class="mb-4" wire:ignore>
+        <form action="{{ route('admin.products.files', $product) }}" class="dropzone" method="POST"
+            id="my-great-dropzone"></form>
+    </div>
+    @if ($product->images->count())
+    <section class="bg-gray-50 shadow-xl rounded-lg p-6 mb-4">
+        <h1 class=" text-2xl text-center font-semibold mb-2">Imagenes del Producto</h1>
+        <ul class="flex flex-wrap justify-center">
+            @foreach ($product->images as $image)
+            <li class="m-1 relative" wire:key='image-{{ $image->id }}'>
+                <img class="w-32 object-cover " src="{{ Storage::url($image->url) }}" alt="imagen de {{ $product->name }}">
+                <x-jet-danger-button 
+                wire:loading.attr='disabled'
+                wire:target='deleteImage({{ $image->id }})'
+                wire:click='deleteImage({{ $image->id }})'
+                class="sm:px-2 absolute right-1 top-1 ">
+                    <i class="fas fa-trash"></i>
+                </x-jet-danger-button>
+            </li>
+            @endforeach
+            
+        </ul>
+    </section>
+    @endif
+    
     <div class=" rounded-lg shadow-xl text-trueGray-700 bg-gray-50 p-6">
 
         <div class="grid grid-cols-2 gap-6 mb-4">
@@ -90,7 +115,6 @@
             @endif
         @endif
         <div class="flex justify-end items-center">
-
             <x-jet-action-message class="mr-3 text-green-500 font-medium" on="saved">
                 {{ __('Updated') }}
             </x-jet-action-message>
@@ -100,17 +124,31 @@
                 {{ __('Updated Product') }}
             </x-jet-button>
         </div>
-
-
     </div>
-
     @if ($this->subcategory)
-
         @if ($this->subcategory->size)
-        @livewire('admin.size-product', ['product' => $product], key('size-product-' . $product->id))
+            @livewire('admin.size-product', ['product' => $product], key('size-product-' . $product->id))
         @elseif ($this->subcategory->color)
-        @livewire('admin.color-product', ['product' => $product], key('color-product-' . $product->id))
+            @livewire('admin.color-product', ['product' => $product], key('color-product-' . $product->id))
         @endif
-
     @endif
+    @push('scripts')
+        <script>
+            Dropzone.options.myGreatDropzone = { // camelized version of the `id`
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                dictDefaultMessage: "Arrastre una imagen al recuadro",
+                acceptedFiles: "image/*",
+                paramName: "file", // The name that will be used to transfer the file
+                maxFilesize: 1, // MB
+                complete: function(file){
+                    this.removefile(file);
+                },
+                queuecomplete: function(){
+                    Livewire.emit('refreshProduct');
+                },
+            };
+        </script>
+    @endpush
 </div>

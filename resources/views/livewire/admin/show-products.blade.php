@@ -49,7 +49,11 @@
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 h-10 w-10">
                                         <img class="h-10 w-10 rounded-lg object-cover"
-                                            src="{{ Storage::url($product->images->first()->url) }}"
+                                            src="@if ($product->images->count())
+                                            {{ Storage::url($product->images->first()->url) }}
+                                            @else
+                                            /storage/fenix/Recurso-texto.svg
+                                            @endif"
                                             alt="imagen del producto {{ $product->name }}">
                                     </div>
                                     <div class="ml-4">

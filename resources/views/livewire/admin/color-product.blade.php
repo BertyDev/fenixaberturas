@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    @if ($product->colors->count())
+    @if ($product_colors->count())
     <div class=" bg-gray-50 shadow-xl rounded-lg p-6">
         <table class=" w-full text-left">
             <thead>
@@ -56,7 +56,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($product->colors as $product_color)
+                @foreach ($product_colors as $product_color)
                     <tr wire:key='product_color-{{ $product_color->pivot->id }}'>
                         <td class=" capitalize px-4 py-2 ">
                             {{ __($colors->find($product_color->pivot->color_id)->name) }}
@@ -70,9 +70,9 @@
                                 class="ml-auto mr-2">
                                 actualizar
                             </x-jet-secondary-button>
-                            <x-jet-danger-button wire:click="confirUserDelete({{ $product_color->pivot->id }})"
+                            <x-jet-danger-button wire:click="confirColorDelete({{ $product_color->pivot->id }})"
                                 wire:loading.attr='disabled'
-                                wire:target='confirUserDelete({{ $product_color->pivot->id }})'>
+                                wire:target='confirColorDelete({{ $product_color->pivot->id }})'>
                                 eliminar
                             </x-jet-danger-button>
                         </td>

@@ -6,6 +6,7 @@ use App\Models\Color;
 use Livewire\Component;
 use App\Models\ColorProduct as Pivot;
 
+
 class ColorProduct extends Component
 {
 
@@ -32,7 +33,7 @@ class ColorProduct extends Component
         $this->open = true;
     }
 
-    public function confirUserDelete(Pivot $pivot)
+    public function confirColorDelete(Pivot $pivot)
     {
         $this->pivot = $pivot;
         $this->open_confir = true;
@@ -59,9 +60,9 @@ class ColorProduct extends Component
     {
         $this->validate();
 
-        $this->product->colors()->attach([
+        $this->product->colors()->sync([
             $this->color_id => ['quantity' => $this->quantity]
-        ]);
+        ],false);
 
         $this->reset('color_id', 'quantity');
 
