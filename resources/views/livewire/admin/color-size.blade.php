@@ -28,16 +28,13 @@
             <x-jet-input-error for="quantity" />
         </div>
         <div class="flex justify-end items-center">
-
-           
-                <x-jet-action-message class=" mr-2 text-green-500 font-medium" on="saved">
-                    {{ __('Added.') }}
-                </x-jet-action-message>
-                <x-jet-button class=" bg-blue-600 hover:bg-blue-500 " wire:click='save' wire:loading.attr='disabled'
-                    wire:target='save'>
-                    {{ __('Add') }}
-                </x-jet-button>
-            
+            <x-jet-action-message class=" mr-2 text-green-500 font-medium" on="saved">
+                {{ __('Added.') }}
+            </x-jet-action-message>
+            <x-jet-button class=" bg-blue-600 hover:bg-blue-500 " wire:click='save' wire:loading.attr='disabled'
+                wire:target='save'>
+                {{ __('Add') }}
+            </x-jet-button>
         </div>
     </div>
     @if ($size_colors->count())

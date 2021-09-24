@@ -20,6 +20,8 @@ class EditProduct extends Component
 
     public $product, $categories, $subcategories, $brands;
 
+    public $open_confir = false;
+
     public $category_id;
 
     protected $rules = [
@@ -33,6 +35,28 @@ class EditProduct extends Component
         'product.quantity' => 'numeric',
 
     ];
+
+    public function confirProductDelete()
+    {
+        $this->open_confir = true;
+    }
+
+    public function delete()
+    {
+        $mensaje = "El producto " . $this->product->name . " fue eliminado satisfactoriamente ";
+        $images = $this->product->images;
+
+        foreach ($images as $image) {
+            Storage::delete($image->url);
+            $image->delete();
+        }
+        $this->open_confir = false;
+        $this->product->delete();
+
+        session()->flash('flash.banner', $mensaje);
+        session()->flash('flash.bannerStyle', 'danger');
+        redirect()->route('admin.index');
+    }
 
     public function mount(Product $product)
     {
@@ -86,7 +110,7 @@ class EditProduct extends Component
 
         $this->emit('saved');
 
-      //  redirect()->route('admin.products.edit', $this->product);
+        //  redirect()->route('admin.products.edit', $this->product);
     }
 
     public function deleteImage(Image $image)
