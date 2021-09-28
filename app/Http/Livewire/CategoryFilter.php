@@ -16,17 +16,26 @@ class CategoryFilter extends Component
 
     public $view = 'grid';
 
+    protected $queryString = [
+        'subcategoryh','brandh'
+    ];
+
     public function resetFilter()
     {
-        $this->reset(['subcategoryh','brandh']);
+        $this->reset(['subcategoryh','brandh','page']);
+        
+    }
+    public function updatedBrandh()
+    {
+        $this->resetPage();
+    }
+    public function updatedSubcategoryh()
+    {
+        $this->resetPage();
     }
 
     public function render()
     {
-        // $products = $this->category->products()
-                    
-        //             ->where('status',2)->paginate(20);
-
         $productsQuery = Product::query()->whereHas('subcategory.category', function(Builder $query){
          
             $query->where('id',$this->category->id);
@@ -34,7 +43,7 @@ class CategoryFilter extends Component
 
         if(!empty($this->subcategoryh)){
             $productsQuery = $productsQuery->whereHas('subcategory', function(Builder $query){
-                $query->where('name',$this->subcategoryh);
+                $query->where('slug',$this->subcategoryh);
             });
         }
         if(!empty($this->brandh)){
@@ -42,7 +51,6 @@ class CategoryFilter extends Component
                 $query->where('name',$this->brandh);
             });
         }
-
 
         $products = $productsQuery->with([
             'images'

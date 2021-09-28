@@ -6,7 +6,7 @@ use App\Http\Livewire\Admin\CreateProduct;
 use App\Http\Livewire\Admin\EditProduct;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\CategoryController;
-
+use App\Http\Livewire\Admin\ShowCategory;
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -29,3 +29,6 @@ Route::get('products/{product}/edit', EditProduct::class)
 
 Route::get('categories', [CategoryController::class,'index'])
 ->name('admin.categories.index');
+
+Route::get('categories/{category}',ShowCategory::class)
+->name('admin.categories.show');

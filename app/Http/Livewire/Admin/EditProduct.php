@@ -33,7 +33,6 @@ class EditProduct extends Component
         'product.brand_id' => 'required',
         'product.price' => 'required',
         'product.quantity' => 'numeric',
-
     ];
 
     public function confirProductDelete()
@@ -43,7 +42,7 @@ class EditProduct extends Component
 
     public function delete()
     {
-        $mensaje = "El producto " . $this->product->name . " fue eliminado satisfactoriamente ";
+        $mensaje = "El producto " . $this->product->name . " fue eliminado satisfactoriamente";
         $images = $this->product->images;
 
         foreach ($images as $image) {

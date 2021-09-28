@@ -24,9 +24,9 @@
             <ul class="text-center bg-white rounded-lg shadow-lg  divide-y divide-gray-200">
                 @foreach ($category->subcategories as $subcategory)
                     <li class="py-2 text-sm ">
-                        <a wire:click="$set('subcategoryh','{{ $subcategory->name }}')"
+                        <a wire:click="$set('subcategoryh','{{ $subcategory->slug }}')"
                             class=" cursor-pointer hover:text-blue-500 capitalize 
-                        {{ $subcategoryh == $subcategory->name ? 'text-blue-500 font-semibold' : '' }}">
+                        {{ $subcategoryh == $subcategory->slug ? 'text-blue-500 font-semibold' : '' }}">
                             {{ $subcategory->name }}
                         </a>
                     </li>
@@ -54,25 +54,47 @@
             @if ($view == 'grid')
                 <ul class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @forelse ($products as $product)
-                    <x-product-grid :product="$product"/>
-                        @empty
-                        <div class="bg-red-400 rounded-lg shadow-md mb-6 px-6 py-2 flex text-center justify-center items-center w-full md:col-span-2 lg:col-span-4">
-                       <p class="font-semibold text-gray-100 uppercase"> El filtro no arrojo resultados</p>
-                    </div>
+                        <x-product-grid :product="$product" />
+                    @empty
+                    <li class=" col-span-1 md:col-span-2 lg:col-span-4">
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative col-span-4"
+                            role="alert">
+                            <strong class="font-bold">{{ __('No Results Found.') }}</strong>
+                            <span class="block sm:inline">No existen productos con los parametros seleccionados</span>
+                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" wire:click='resetFilter'>
+                                <svg class="fill-current h-6 w-6 text-red-500" role="button"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <title>{{ __('Close') }}</title>
+                                    <path
+                                        d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                                </svg>
+                            </span>
+                        </div>
+                    </li>
                     @endforelse
                 </ul>
             @else
                 <ul>
                     @forelse ($products as $product)
-                    <x-product-list :product="$product"/>
-                        @empty
-                        <div class="bg-red-400 rounded-lg shadow-md mb-6 px-6 py-2 flex text-center justify-center items-center w-full md:col-span-2 lg:col-span-4">
-                       <p class="font-semibold text-gray-100 uppercase"> El filtro no arrojo resultados</p>
-                    </div>
+                        <x-product-list :product="$product" />
+                    @empty
+                    <li>
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative "
+                            role="alert">
+                            <strong class="font-bold">{{ __('No Results Found.') }}</strong>
+                            <span class="block sm:inline">No existen productos con los parametros seleccionados</span>
+                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" wire:click='resetFilter'>
+                                <svg class="fill-current h-6 w-6 text-red-500" role="button"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <title>{{ __('Close') }}</title>
+                                    <path
+                                        d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                                </svg>
+                            </span>
+                        </div>
+                    </li>
                     @endforelse
                 </ul>
-
-
             @endif
             <div class="py-4">
                 {{ $products->links() }}
