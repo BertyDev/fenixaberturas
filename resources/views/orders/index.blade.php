@@ -3,7 +3,7 @@
         <section class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-1 lg:gap-6 text-white">
 
             <a href="{{ route('orders.index') . '?status=1' }}"
-                class="bg-gray-500 rounded-lg bg-opacity-75 px-4 lg:px-12 pt-8 pb-4 ">
+                class="bg-gray-500 rounded-lg bg-opacity-75 px-4 lg:px-12 pt-8 pb-4 shadow-md">
                 <p class="text-center text-lg lg:text-2xl">
                     {{ $pendiente }}
                 </p>
@@ -13,7 +13,7 @@
                 </p>
             </a>
             <a href="{{ route('orders.index') . '?status=2' }}"
-                class="bg-yellow-500 rounded-lg bg-opacity-75 px-4 lg:px-12 pt-8 pb-4 ">
+                class="bg-yellow-500 rounded-lg bg-opacity-75 px-4 lg:px-12 pt-8 pb-4 shadow-md">
                 <p class="text-center text-2xl">
                     {{ $recibido }}
                 </p>
@@ -23,7 +23,7 @@
                 </p>
             </a>
             <a href="{{ route('orders.index') . '?status=3' }}"
-                class="bg-pink-500 rounded-lg bg-opacity-75 px-4 lg:px-12 pt-8 pb-4 ">
+                class="bg-pink-500 rounded-lg bg-opacity-75 px-4 lg:px-12 pt-8 pb-4 shadow-md">
                 <p class="text-center text-lg lg:text-2xl">
                     {{ $enviado }}
                 </p>
@@ -33,7 +33,7 @@
                 </p>
             </a>
             <a href="{{ route('orders.index') . '?status=4' }}"
-                class="bg-green-500 rounded-lg bg-opacity-75 px-4 lg:px-12 pt-8 pb-4 ">
+                class="bg-green-500 rounded-lg bg-opacity-75 px-4 lg:px-12 pt-8 pb-4 shadow-md">
                 <p class="text-center text-lg lg:text-2xl">
                     {{ $entregado }}
                 </p>
@@ -43,7 +43,7 @@
                 </p>
             </a>
             <a href="{{ route('orders.index') . '?status=5' }}"
-                class="bg-red-500 rounded-lg bg-opacity-75 px-4 lg:px-12 pt-8 pb-4 ">
+                class="bg-red-500 rounded-lg bg-opacity-75 px-4 lg:px-12 pt-8 pb-4 shadow-md">
                 <p class="text-center text-2xl">
                     {{ $anulado }}
                 </p>
@@ -54,6 +54,8 @@
             </a>
 
         </section>
+
+        @if ($orders->count())
         <section class="bg-white rounded-lg shadow-lg py-8 px-12 mt-12 text-trueGray-700">
             <h1 class=" text-2xl mb-4">Pedidos recientes</h1>
 
@@ -125,5 +127,13 @@
                 @endforeach
             </ul>
         </section>
+        @else
+            <div class="bg-white rounded-lg shadow-lg py-8 px-12 mt-12 text-trueGray-700">
+                <span class=" font-bold text-lg text-trueGray-600">
+                    No existe registros de pedidos
+                </span>
+            </div>
+        @endif
+
     </div>
 </x-app-layout>

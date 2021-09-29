@@ -15,6 +15,9 @@
                     <x-jet-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">
                         {{ __('Products') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('admin.orders.index') }}" :active="request()->routeIs('admin.orders.*')">
+                        {{ __('My orders') }}
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.categories.index') }}" :active="request()->routeIs('admin.categories.*')">
                         {{ __('Categories') }}
                     </x-jet-nav-link>
@@ -26,7 +29,7 @@
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
-                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
+                {{-- @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
@@ -78,7 +81,7 @@
                             </x-slot>
                         </x-jet-dropdown>
                     </div>
-                @endif
+                @endif --}}
 
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
@@ -162,6 +165,9 @@
             <x-jet-responsive-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">
                 {{ __('Products') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('admin.orders.index') }}" :active="request()->routeIs('admin.orders.*')">
+                {{ __('My orders') }}
+            </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('admin.categories.index') }}" :active="request()->routeIs('admin.categories.*')">
                 {{ __('Categories') }}
             </x-jet-responsive-nav-link>
@@ -210,7 +216,7 @@
                     </x-jet-responsive-nav-link>
                 </form>
 
-                <!-- Team Management -->
+                {{-- <!-- Team Management -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="border-t border-gray-200"></div>
 
@@ -241,7 +247,7 @@
                     @foreach (Auth::user()->allTeams() as $team)
                         <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link" />
                     @endforeach
-                @endif
+                @endif --}}
             </div>
         </div>
     </div>
