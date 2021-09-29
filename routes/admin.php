@@ -7,6 +7,7 @@ use App\Http\Livewire\Admin\EditProduct;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Livewire\Admin\ShowCategory;
+use App\Http\Livewire\Admin\BrandComponent;
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -32,3 +33,5 @@ Route::get('categories', [CategoryController::class,'index'])
 
 Route::get('categories/{category}',ShowCategory::class)
 ->name('admin.categories.show');
+
+Route::get('brands', BrandComponent::class)->name('admin.brands.index');

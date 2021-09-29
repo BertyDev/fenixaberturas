@@ -7,14 +7,14 @@
             Complete la informacion necesaria para poder creae una categoría
         </x-slot>
         <x-slot name="form">
-            <div class=" col-span-6 sm:col-span-4">
+            <div class=" col-span-6 sm:col-span-5">
                 <x-jet-label>
                     {{ __('Name') }}
                 </x-jet-label>
                 <x-jet-input wire:model.debounce.500ms='createForm.name' type="text" class="w-full" />
                 <x-jet-input-error for="createForm.name" />
             </div>
-            <div class=" col-span-6 sm:col-span-4">
+            <div class=" col-span-6 sm:col-span-5">
                 <x-jet-label>
                     {{ __('Slug') }}
                 </x-jet-label>
@@ -22,18 +22,18 @@
                     class="w-full bg-gray-100" />
                 <x-jet-input-error for="createForm.slug" />
             </div>
-            <div class=" col-span-6 sm:col-span-4">
+            <div class=" col-span-6 sm:col-span-5">
                 <x-jet-label>
                     {{ __('Ícono') }}
                 </x-jet-label>
                 <x-jet-input wire:model.defer='createForm.icon' type="text" class="w-full" />
                 <x-jet-input-error for="createForm.icon" />
             </div>
-            <div class=" col-span-6 sm:col-span-4">
+            <div class=" col-span-6 sm:col-span-5">
                 <x-jet-label>
                     {{ __('Brands') }}
                 </x-jet-label>
-                <div class="grid grid-cols-4">
+                <div class="grid grid-cols-3 lg:grid-cols-4">
                     @foreach ($brands as $brand)
                         <x-jet-label>
                             <x-jet-checkbox wire:model.defer='createForm.brands' name="brands[]"
@@ -44,7 +44,7 @@
                 </div>
                 <x-jet-input-error for="createForm.brands" />
             </div>
-            <div class=" col-span-6 sm:col-span-4">
+            <div class=" col-span-6 sm:col-span-5">
                 <x-jet-label>
                     {{ __('Image') }}
                 </x-jet-label>

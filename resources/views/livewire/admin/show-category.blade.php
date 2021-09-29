@@ -1,4 +1,5 @@
 <div class="container py-12">
+    {{-- Formulario crear categoría --}}
     <x-jet-form-section submit="save" class="mb-6">
         <x-slot name="title">
             Crear nueva {{ __('Subcategory') }}
@@ -64,7 +65,7 @@
             </x-jet-button>
         </x-slot>
     </x-jet-form-section>
-
+    {{-- lista de categoría --}}
     <x-jet-action-section>
         <x-slot name="title">
             Listado de {{ __('Subcategory') }}
@@ -106,7 +107,7 @@
             </table>
         </x-slot>
     </x-jet-action-section>
-
+    {{-- Modal editar --}}
     <x-jet-dialog-modal wire:model='editForm.open'>
         <x-slot name="title">
             {{ __('Edit') }} {{ __('Subcategory') }}
@@ -171,7 +172,7 @@
             </x-jet-danger-button>
         </x-slot>
     </x-jet-dialog-modal>
-
+    {{-- Modal confirmar eliminar --}}
     <x-jet-confirmation-modal wire:model="open_confir" maxWidth="md">
         <x-slot name="title">
             Eliminar {{ __('Subcategory') }}
