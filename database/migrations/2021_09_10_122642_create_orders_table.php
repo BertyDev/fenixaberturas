@@ -18,15 +18,18 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
-            $table->string('adress');
-
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('department_id')->constrained();
-            $table->foreignId('city_id')->constrained();
-            $table->foreignId('district_id')->constrained();
+            $table->string('contact');
+            $table->string('phone');
+
+            // $table->string('adress')->nullable();            
+            // $table->string('references')->nullable();
+            // $table->foreignId('department_id')->constrained();
+            // $table->foreignId('city_id')->constrained();
+            // $table->foreignId('district_id')->constrained();
 
 
-            $table->enum('status',[
+            $table->enum('status', [
                 Order::PENDIENTE,
                 Order::RECIBIDO,
                 Order::ENVIADO,
@@ -34,13 +37,15 @@ class CreateOrdersTable extends Migration
                 Order::ANULADO,
             ])->default(Order::PENDIENTE);
 
-            $table->enum('envio_type',[Order::RETIRA,Order::ENVIO]);
+            $table->enum('envio_type', [Order::RETIRA, Order::ENVIO]);
 
             $table->float('shipping_cost');
 
             $table->float('total');
 
             $table->json('content');
+
+            $table->json('envio')->nullable();
 
 
             $table->timestamps();

@@ -20,7 +20,7 @@ class CreateCitiesTable extends Migration
 
             $table->float('cost');
 
-            $table->foreignId('department_id')->constrained();
+            $table->foreignId('department_id')->constrained()->onDelete('cascade');
 
             $table->timestamps();
         });

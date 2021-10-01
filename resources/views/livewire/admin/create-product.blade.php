@@ -91,7 +91,9 @@
         @endif
         {{-- Boton Crear  --}}
         <div class="flex justify-end items-center">
-           
+            <x-jet-action-message class="mr-3 text-green-500 font-medium" on="saved">
+                {{ __('Created.') }}
+            </x-jet-action-message>
 
             <x-jet-button class=" bg-blue-600 hover:bg-blue-500" 
             wire:click='save'

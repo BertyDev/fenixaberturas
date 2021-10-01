@@ -21,7 +21,16 @@
     "Colour": "Color",
     "Products": "Productos",
     "Image": "Imagen",
+    "Shippings": "Envíos",
+    "Province": "Provincia",
+    "Provinces": "Provincias",
+    "Match": "Partido",
+    "Matches": "Partidos",
+    "Location":"Localidad",
+    "Locations":"Localidades",
+    "Cost":"Costo",
     
+
     "Shopping cart": "Carrito de compras",
     "30 Days": "30 Días",
     "60 Days": "60 Días",

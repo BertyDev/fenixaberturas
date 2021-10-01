@@ -18,7 +18,8 @@ class CreateDistrictsTable extends Migration
 
             $table->string('name');
 
-            $table->foreignId('city_id')->constrained();
+            $table->foreignId('city_id')->constrained('cities')
+            ->onDelete('cascade');
 
             $table->timestamps();
         });

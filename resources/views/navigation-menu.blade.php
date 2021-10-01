@@ -24,6 +24,9 @@
                     <x-jet-nav-link href="{{ route('admin.brands.index') }}" :active="request()->routeIs('admin.brands.*')">
                         {{ __('Brands') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('admin.department.index') }}" :active="request()->routeIs('admin.department.*')">
+                        {{ __('Shippings') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -160,7 +163,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': !open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">
                 {{ __('Products') }}
@@ -173,6 +176,9 @@
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('admin.brands.index') }}" :active="request()->routeIs('admin.brands.*')">
                 {{ __('Brands') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('admin.department.index') }}"  :active="request()->routeIs('admin.department.*')" >
+                {{ __('Shippings') }}
             </x-jet-responsive-nav-link>
         </div>
 

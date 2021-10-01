@@ -1,4 +1,9 @@
 <div class="container py-12">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight capitalize">
+            {{ $category->name}}
+        </h2>
+    </x-slot>
     {{-- Formulario crear categoría --}}
     <x-jet-form-section submit="save" class="mb-6">
         <x-slot name="title">
