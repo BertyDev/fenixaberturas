@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container py-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-6">
             {{-- Inicio Slider Imagenes --}}
             <div>
                 <div class="flexslider shadow-lg">
@@ -12,10 +12,15 @@
                         @endforeach
                     </ul>
                 </div>
+                <div class="-mt-5 text-trueGray-700">
+                    <h2 class=" font-bold text-lg">{{ __('Description') }}:</h2>
+                    {!! $product->description !!}
+                </div>
             </div>
+
             {{-- Fin Slider Imagenes --}}
-            <div>
-                <h1 class=" text-2xl font-bold text-trueGray-700 pb-2 -mt-4 md:mt-0">
+            <div class="py-6">
+                <h1 class=" text-2xl font-bold text-trueGray-700 pb-2  ">
                     {{ $product->name }}
                 </h1>
                 <div class="flex">

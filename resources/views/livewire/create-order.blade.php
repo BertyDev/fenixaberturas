@@ -1,5 +1,5 @@
-<div class="container grid grid-cols-1 gap-6 py-8 lg:grid-cols-5">
-    <div class="order-last lg:col-span-3 lg:order-first">
+<div class="container grid grid-cols-1 gap-6 py-8 md:grid-cols-4 lg:grid-cols-5">
+    <div class="order-last md:col-span-2 lg:col-span-3 md:order-first">
         <p class="mt-6 mb-3 text-lg font-semibold text-trueGray-700">Contácto</p>
         <div class="p-6 bg-white rounded-lg shadow-lg ">
             <div class="mb-4">
@@ -100,13 +100,13 @@
             </a>
         </div>
     </div>
-    <div class=" lg:col-span-2">
+    <div class=" md:col-span-2 lg:col-span-2">
         <p class="mt-6 mb-3 text-lg font-semibold text-trueGray-700">Detalle Compra</p>
 
         <div class="p-6 bg-white rounded-lg shadow-lg ">
             <ul>
                 @forelse (Cart::content() as $item)
-                    <li  class="flex px-2 py-1 border-b-2 border-trueGray-300">
+                    <li  class="flex px-2 py-1 border-b border-trueGray-200">
                         <img class="object-cover w-20 mr-4 rounded-md h-15" src="{{ $item->options->image }}" alt="">
                         <article class="flex-1">
                             <h1 class="font-bold ">{{ $item->name }}</h1>

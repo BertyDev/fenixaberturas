@@ -47,8 +47,7 @@
             </p>
         </div>
         <div class="p-6 mb-6 bg-white rounded-lg shadow-lg ">
-            <div
-                class="grid grid-cols-1 gap-6 text-gray-700 lg:grid-cols-2 lg:divide-x-2 lg:divide-gray-300 lg:divide-dotted">
+            <div class="grid grid-cols-1 gap-6 text-gray-700 md:grid-cols-2 md:divide-x-2 md:divide-gray-300 md:divide-dotted">
                 <div>
                     <p class="text-lg font-semibold uppercase ">Envío</p>
                     @if ($order->envio_type == 1)
@@ -61,7 +60,7 @@
                             {{ $envio->district }}</p>
                     @endif
                 </div>
-                <div class="lg:pl-2">
+                <div class="md:pl-2">
                     <p class="text-lg font-semibold uppercase ">Contácto</p>
                     <p class="text-sm ">Persona que recibirá el Producto: {{ $order->contact }}</p>
                     <p class="text-sm ">Teléfono de Contacto: {{ $order->phone }}</p>
@@ -138,25 +137,25 @@
 
     @push('scripts')
         {{-- SDK MercadoPago.js V2 --}}
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
+        <script src="https://sdk.mercadopago.com/js/v2"></script>
 
-    <script>
-        // Agrega credenciales de SDK
-        const mp = new MercadoPago("{{ config('services.mercadopago.key') }}", {
-            locale: 'es-AR'
-        });
+        <script>
+            // Agrega credenciales de SDK
+            const mp = new MercadoPago("{{ config('services.mercadopago.key') }}", {
+                locale: 'es-AR'
+            });
 
-        // Inicializa el checkout
-        mp.checkout({
-            preference: {
-                id: '{{ $preference->id }}'
-            },
-            render: {
-                container: '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
-                label: 'Pagar', // Cambia el texto del botón de pago (opcional)
-            }
-        });
-    </script>
+            // Inicializa el checkout
+            mp.checkout({
+                preference: {
+                    id: '{{ $preference->id }}'
+                },
+                render: {
+                    container: '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
+                    label: 'Pagar', // Cambia el texto del botón de pago (opcional)
+                }
+            });
+        </script>
     @endpush
-    
+
 </div>
