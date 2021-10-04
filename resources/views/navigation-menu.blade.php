@@ -16,7 +16,7 @@
                         {{ __('Products') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.orders.index') }}" :active="request()->routeIs('admin.orders.*')">
-                        {{ __('My orders') }}
+                        {{ __('Orders') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.categories.index') }}" :active="request()->routeIs('admin.categories.*')">
                         {{ __('Categories') }}
@@ -26,6 +26,9 @@
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.department.index') }}" :active="request()->routeIs('admin.department.*')">
                         {{ __('Shippings') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.*')">
+                        {{ __('Users') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -169,7 +172,7 @@
                 {{ __('Products') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('admin.orders.index') }}" :active="request()->routeIs('admin.orders.*')">
-                {{ __('My orders') }}
+                {{ __('Orders') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('admin.categories.index') }}" :active="request()->routeIs('admin.categories.*')">
                 {{ __('Categories') }}
@@ -179,6 +182,9 @@
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('admin.department.index') }}"  :active="request()->routeIs('admin.department.*')" >
                 {{ __('Shippings') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('admin.users.index') }}"  :active="request()->routeIs('admin.users.*')" >
+                {{ __('Users') }}
             </x-jet-responsive-nav-link>
         </div>
 

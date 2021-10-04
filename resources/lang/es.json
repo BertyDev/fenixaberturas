@@ -28,7 +28,10 @@
     "Matches": "Partidos",
     "Location":"Localidad",
     "Locations":"Localidades",
+    "Orders":"Pedidos",
     "Cost":"Costo",
+    "Users":"Usuarios",
+    "User does not have the right roles.": "EL USUARIO NO TIENE LAS FUNCIONES ADECUADAS.",
     
 
     "Shopping cart": "Carrito de compras",

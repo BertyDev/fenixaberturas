@@ -1,9 +1,6 @@
-
 <header class="sticky top-0 z-50 bg-blue-600 " x-data="dropdown()">
     <div class="container flex items-center justify-between h-16 md:justify-start">
-        <a 
-        :class="{'bg-opacity-100 text-blue-500' :open}"
-        x-on:click="show()"
+        <a :class="{'bg-opacity-100 text-blue-500' :open}" x-on:click="show()"
             class="flex flex-col items-center justify-center order-last h-full px-6 font-semibold text-white bg-white bg-opacity-25 cursor-pointer md:order-first md:px-4">
             <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -42,13 +39,14 @@
                         <x-jet-dropdown-link href="{{ route('profile.show') }}">
                             {{ __('Profile') }}
                         </x-jet-dropdown-link>
-                        <x-jet-dropdown-link href="{{ route('orders.index') }}"> 
-                           {{ __('My orders') }}
+                        <x-jet-dropdown-link href="{{ route('orders.index') }}">
+                            {{ __('My orders') }}
                         </x-jet-dropdown-link>
-                        <x-jet-dropdown-link href="{{ route('admin.index') }}"> 
+                        @role('admin')
+                        <x-jet-dropdown-link href="{{ route('admin.index') }}">
                             {{ __('Administrator') }}
-                         </x-jet-dropdown-link>
-
+                        </x-jet-dropdown-link>
+                        @endrole
 
                         <div class="border-t border-gray-100"></div>
 
@@ -57,7 +55,7 @@
                             @csrf
 
                             <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                    this.closest('form').submit();">
+                                                                        this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-jet-dropdown-link>
                         </form>
@@ -82,19 +80,15 @@
             @endauth
 
         </div>
-       <div class="hidden md:block">
-        @livewire('dropdown-cart')
-       </div>
+        <div class="hidden md:block">
+            @livewire('dropdown-cart')
+        </div>
     </div>
-    <nav id="navigation-menu" :class="{'block': open,'hidden': !open}"
-        x-show="open"
-        x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="transform opacity-0 scale-100" 
-        x-transition:enter-end="transform opacity-100 scale-100"
-        x-transition:leave="transition ease-in duration-300" 
+    <nav id="navigation-menu" :class="{'block': open,'hidden': !open}" x-show="open"
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="transform opacity-0 scale-100"
+        x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-300"
         x-transition:leave-start="transform opacity-100 scale-100"
         x-transition:leave-end="transform opacity-0 scale-100"
-    
         class="absolute hidden w-full bg-opacity-25 bg-trueGray-700">
         {{-- Menu pantallas grandes --}}
         <div class="container hidden h-full md:block">
@@ -102,7 +96,8 @@
                 <ul class="bg-white ">
                     @foreach ($categories as $category)
                         <li class="navigation-link text-trueGray-500 hover:bg-gray-500 hover:text-white">
-                            <a href="{{ route('categories.show',$category) }}" class="flex items-center px-4 py-2 text-sm">
+                            <a href="{{ route('categories.show', $category) }}"
+                                class="flex items-center px-4 py-2 text-sm">
                                 <span class="flex justify-center w-9">
                                     {!! $category->icon !!}
                                 </span>
@@ -132,65 +127,74 @@
             <p class="px-6 my-2 text-trueGray-500">Categorias</p>
             <ul>
                 @foreach ($categories as $category)
-                <li class=" text-trueGray-500 hover:bg-gray-500 hover:text-white">
-                    <a href="{{ route('categories.show',$category) }}" class="flex items-center px-4 py-2 text-sm ">
-                        <span class="flex justify-center w-9">
-                            {!! $category->icon !!}
-                        </span>
-                        {{ $category->name }}
-                    </a>
+                    <li class=" text-trueGray-500 hover:bg-gray-500 hover:text-white">
+                        <a href="{{ route('categories.show', $category) }}"
+                            class="flex items-center px-4 py-2 text-sm ">
+                            <span class="flex justify-center w-9">
+                                {!! $category->icon !!}
+                            </span>
+                            {{ $category->name }}
+                        </a>
 
-                 </li>
+                    </li>
                 @endforeach
             </ul>
 
             <p class="px-6 my-2 text-trueGray-500">Usuarios</p>
             @livewire('cart-mobil')
             @auth
-            <a href="{{ route('profile.show') }}" class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white">
-                <span class="flex justify-center w-9">
-                    <i class="cursor-pointer fas fa-user-circle"></i>
-                </span>
-               {{ __('Profile') }}
-            </a>
-            <a href="{{ route('orders.index') }}" class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white">
-                <span class="flex justify-center w-9">
-                    <i class="cursor-pointer fas fa-truck"></i>
-                </span>
-               {{ __('My orders') }}
-            </a>
-            <a href="{{ route('admin.index') }}" class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white">
-                <span class="flex justify-center w-9">
-                    <i class="cursor-pointer fas fa-tools"></i>
-                </span>
-               {{ __('Administrator') }}
-            </a>
-            <a href="" 
-            onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit()"
-            class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white">
-                <span class="flex justify-center w-9">
-                    <i class="cursor-pointer fas fa-sign-out-alt"></i>
-                </span>
-               {{ __('Logout') }}
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-            @csrf
+                <a href="{{ route('profile.show') }}"
+                    class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white">
+                    <span class="flex justify-center w-9">
+                        <i class="cursor-pointer fas fa-user-circle"></i>
+                    </span>
+                    {{ __('Profile') }}
+                </a>
+                <a href="{{ route('orders.index') }}"
+                    class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white">
+                    <span class="flex justify-center w-9">
+                        <i class="cursor-pointer fas fa-truck"></i>
+                    </span>
+                    {{ __('My orders') }}
+                </a>
+                @role('admin')
+                <a href="{{ route('admin.index') }}"
+                    class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white">
+                    <span class="flex justify-center w-9">
+                        <i class="cursor-pointer fas fa-tools"></i>
+                    </span>
+                    {{ __('Administrator') }}
+                </a>
+                @endrole
+                <a href="" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit()"
+                    class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white">
+                    <span class="flex justify-center w-9">
+                        <i class="cursor-pointer fas fa-sign-out-alt"></i>
+                    </span>
+                    {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                    @csrf
 
-            </form>
+                </form>
             @else
-            <x-jet-dropdown-link class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white" href="{{ route('login') }}">
-                <span class="flex justify-center w-9">
-                    <i class="cursor-pointer fas fa-user-circle"></i>
-                </span>
-                {{ __('Log in') }}
-            </x-jet-dropdown-link>
-            <x-jet-dropdown-link class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white" href="{{ route('register') }}">
-                <span class="flex justify-center w-9">
-                    <i class="cursor-pointer fas fa-fingerprint"></i>
-                </span>
-                {{ __('Register') }}
-            </x-jet-dropdown-link>
+                <x-jet-dropdown-link
+                    class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white"
+                    href="{{ route('login') }}">
+                    <span class="flex justify-center w-9">
+                        <i class="cursor-pointer fas fa-user-circle"></i>
+                    </span>
+                    {{ __('Log in') }}
+                </x-jet-dropdown-link>
+                <x-jet-dropdown-link
+                    class="flex items-center px-4 py-2 text-sm text-trueGray-500 hover:bg-gray-500 hover:text-white"
+                    href="{{ route('register') }}">
+                    <span class="flex justify-center w-9">
+                        <i class="cursor-pointer fas fa-fingerprint"></i>
+                    </span>
+                    {{ __('Register') }}
+                </x-jet-dropdown-link>
             @endauth
         </div>
     </nav>
