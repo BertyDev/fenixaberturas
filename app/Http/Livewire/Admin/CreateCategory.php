@@ -18,7 +18,7 @@ class CreateCategory extends Component
         'createForm.slug' => 'required|unique:categories,slug',
         'createForm.icon' => 'required',
         'createForm.brands' => 'required',
-        'createForm.image' => 'required|image|max:1024|mimes:png,jpg',
+        'createForm.image' => 'required|image|max:1024|mimes:png',
     ];
     protected $validationAttributes = [
         //create

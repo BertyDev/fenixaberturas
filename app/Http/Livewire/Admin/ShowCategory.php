@@ -42,7 +42,7 @@ class ShowCategory extends Component
     'size' => false,
   ];
   public $editForm = [
-    'name' => null,
+    'name' => null, 
     'slug' => null,
     'color' => false,
     'size' => false,

@@ -15,19 +15,24 @@
                     <x-jet-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">
                         {{ __('Products') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('admin.orders.index') }}" :active="request()->routeIs('admin.orders.*')">
+                    <x-jet-nav-link href="{{ route('admin.orders.index') }}"
+                        :active="request()->routeIs('admin.orders.*')">
                         {{ __('Orders') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('admin.categories.index') }}" :active="request()->routeIs('admin.categories.*')">
+                    <x-jet-nav-link href="{{ route('admin.categories.index') }}"
+                        :active="request()->routeIs('admin.categories.*')">
                         {{ __('Categories') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('admin.brands.index') }}" :active="request()->routeIs('admin.brands.*')">
+                    <x-jet-nav-link href="{{ route('admin.brands.index') }}"
+                        :active="request()->routeIs('admin.brands.*')">
                         {{ __('Brands') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('admin.department.index') }}" :active="request()->routeIs('admin.department.*')">
+                    <x-jet-nav-link href="{{ route('admin.department.index') }}"
+                        :active="request()->routeIs('admin.department.*')">
                         {{ __('Shippings') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.*')">
+                    <x-jet-nav-link href="{{ route('admin.users.index') }}"
+                        :active="request()->routeIs('admin.users.*')">
                         {{ __('Users') }}
                     </x-jet-nav-link>
                 </div>
@@ -171,19 +176,24 @@
             <x-jet-responsive-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">
                 {{ __('Products') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('admin.orders.index') }}" :active="request()->routeIs('admin.orders.*')">
+            <x-jet-responsive-nav-link href="{{ route('admin.orders.index') }}"
+                :active="request()->routeIs('admin.orders.*')">
                 {{ __('Orders') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('admin.categories.index') }}" :active="request()->routeIs('admin.categories.*')">
+            <x-jet-responsive-nav-link href="{{ route('admin.categories.index') }}"
+                :active="request()->routeIs('admin.categories.*')">
                 {{ __('Categories') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('admin.brands.index') }}" :active="request()->routeIs('admin.brands.*')">
+            <x-jet-responsive-nav-link href="{{ route('admin.brands.index') }}"
+                :active="request()->routeIs('admin.brands.*')">
                 {{ __('Brands') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('admin.department.index') }}"  :active="request()->routeIs('admin.department.*')" >
+            <x-jet-responsive-nav-link href="{{ route('admin.department.index') }}"
+                :active="request()->routeIs('admin.department.*')">
                 {{ __('Shippings') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('admin.users.index') }}"  :active="request()->routeIs('admin.users.*')" >
+            <x-jet-responsive-nav-link href="{{ route('admin.users.index') }}"
+                :active="request()->routeIs('admin.users.*')">
                 {{ __('Users') }}
             </x-jet-responsive-nav-link>
         </div>

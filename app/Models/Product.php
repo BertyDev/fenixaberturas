@@ -53,11 +53,19 @@ class Product extends Model
     {
         return $this->belongsToMany(Color::class)->withPivot('quantity','id');
     }
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 
     // relacion uno a muchos
     public function sizes()
     {
         return $this->hasMany(Size::class);
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
     // relacion uno a muchos polimorfica
@@ -65,6 +73,7 @@ class Product extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
 
     // URL AMIGABLE
 
